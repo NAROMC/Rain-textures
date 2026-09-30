@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Rain Texture</title>
+
+    <meta
+        name="description"
+        content="Minecraft用テクスチャ・リソースパック配布サイト"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header class="header">
+
+<div class="header-brand">
+
+    <button
+        class="logo"
+        id="logoButton"
+        type="button"
+        aria-label="Rain Texture ホーム"
+    >
+        RAIN<span>TEXTURE</span>
+    </button>
+
+
+    <a
+        class="header-youtube"
+        href="https://www.youtube.com/@Rain-Hive-z2s"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        YOUTUBE
+    </a>
+
+</div>
+
+
+        <nav class="nav">
+
+            <button
+                id="searchButton"
+                type="button"
+            >
+                SEARCH
+            </button>
+
+
+            <button
+                id="postButton"
+                type="button"
+            >
+                POST
+            </button>
+
+
+            <!-- LOGIN -->
+
+            <button
+                id="loginButton"
+                type="button"
+            >
+                LOG IN
+            </button>
+
+
+
+            <button
+                id="headerLogoutButton"
+                type="button"
+                style="display: none;"
+            >
+                LOGOUT
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                MINECRAFT TEXTURE COLLECTION
+            </div>
+
+
+            <h1>
+                Rain自作テクスチャ
+            </h1>
+
+
+            <p class="hero-description">
+                Minecraftをテクスチャパックで気軽に"新しい"を実現させる。
+            </p>
+
+
+            <button
+                class="hero-button"
+                id="exploreButton"
+                type="button"
+            >
+                EXPLORE TEXTURES
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+
+    <main>
+
+        <section
+            class="texture-section"
+            id="textureSection"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-label">
+                        COLLECTION
+                    </div>
+
+                    <h2>
+                        Textures
+                    </h2>
+
+                </div>
+
+
+
+                <div class="search-box">
+
+                    <input
+                        id="searchInput"
+                        type="text"
+                        placeholder="テクスチャを検索..."
+                        autocomplete="off"
+                    >
+
+
+                    <button
+                        id="searchSubmit"
+                        type="button"
+                        aria-label="検索"
+                    >
+                        🔍
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="texture-grid"
+                id="textureGrid"
+            >
+            </div>
+
+
+
+
+
+            <div class="pagination">
+
+                <button
+                    class="page-button"
+                    id="previousPage"
+                    type="button"
+                >
+                    ← PREVIOUS
+                </button>
+
+
+                <span id="pageNumber">
+                    1 / 1
+                </span>
+
+
+                <button
+                    class="page-button"
+                    id="nextPage"
+                    type="button"
+                >
+                    NEXT →
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+
+        <section
+            class="post-section"
+            id="postSection"
+        >
+
+            <div class="post-container">
+
+                <div class="section-label">
+                    CREATE
+                </div>
+
+
+                <h2>
+                    Post Texture
+                </h2>
+
+
+                <p class="post-description">
+                    RainがテクスチャをPOSTして、
+                    みんなに共有する...
+                </p>
+
+
+
+
+
+                <div
+                    id="loginStatus"
+                    class="login-status"
+                >
+                    管理者確認中...
+                </div>
+
+
+
+
+                <form
+                    id="postForm"
+                    style="display: none;"
+                >
+
+
+                    <!-- TEXTURE NAME -->
+
+                    <div class="form-group">
+
+                        <label for="textureName">
+                            テクスチャ名
+                        </label>
+
+
+                        <input
+                            id="textureName"
+                            type="text"
+                            placeholder="例：Rain PvP Pack"
+                            required
+                        >
+
+                    </div>
+
+
+
+
+                    <div class="form-group">
+
+                        <label for="textureDescription">
+                            説明
+                        </label>
+
+
+                        <textarea
+                            id="textureDescription"
+                            placeholder="テクスチャの説明を書いてください。"
+                        ></textarea>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="textureVersion">
+                            バージョン
+                        </label>
+
+
+                        <input
+                            id="textureVersion"
+                            type="text"
+                            placeholder="例：1.0.0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="textureImage">
+                            プレビュー画像
+                        </label>
+
+
+                        <input
+                            id="textureImage"
+                            type="file"
+                            accept="image/*"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="textureFile">
+                            テクスチャファイル
+                        </label>
+
+
+                        <input
+                            id="textureFile"
+                            type="file"
+                            accept=".mcpack,.zip,.mcaddon"
+                            required
+                        >
+
+                    </div>
+
+                    <button
+                        class="submit-button"
+                        type="submit"
+                    >
+                        POST TEXTURE
+                    </button>
+
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+
+
+    <div
+        class="ad-modal texture-detail-modal"
+        id="textureModal"
+    >
+
+        <div class="ad-box texture-detail-box">
+
+
+            <button
+                class="close-ad"
+                id="closeTextureModal"
+                type="button"
+                aria-label="閉じる"
+            >
+                ×
+            </button>
+
+
+            <div class="ad-label">
+                TEXTURE DETAILS
+            </div>
+
+            <img
+                id="detailImage"
+                class="texture-detail-image"
+                src=""
+                alt=""
+            >
+
+
+
+
+            <h2
+                id="detailName"
+                class="texture-detail-name"
+            >
+                Texture Name
+            </h2>
+
+
+
+            <p
+                id="detailDescription"
+                class="texture-detail-description"
+            >
+                Texture description
+            </p>
+
+
+
+
+            <div
+                id="detailVersion"
+                class="texture-version"
+            >
+                VERSION 1.0.0
+            </div>
+
+
+
+
+            <button
+                id="detailDownload"
+                class="download-after-ad"
+                type="button"
+            >
+                DOWNLOAD
+            </button>
+
+
+
+            <div
+                class="ad-placeholder"
+                style="margin-top: 20px;"
+            >
+
+                <span>
+                    Advertisement
+                </span>
+
+                <small>
+                    広告スペース
+                </small>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        class="ad-modal"
+        id="adModal"
+    >
+
+        <div class="ad-box">
+
+
+
+
+            <button
+                class="close-ad"
+                id="closeAd"
+                type="button"
+                aria-label="閉じる"
+            >
+                ×
+            </button>
+
+
+
+
+            <div class="ad-label">
+                ADVERTISEMENT
+            </div>
+
+
+
+            <h2>
+                DOWNLOAD
+            </h2>
+
+
+
+
+            <div class="ad-placeholder">
+
+                <span>
+                    Advertisement
+                </span>
+
+                <small>
+                    広告スペース
+                </small>
+
+            </div>
+
+
+
+            <p class="ad-text">
+
+                ダウンロードを開始しました。
+                広告のご協力もお願いします。
+
+            </p>
+
+
+
+
+            <button
+                class="download-after-ad"
+                id="downloadAfterAd"
+                type="button"
+            >
+                DOWNLOAD TEXTURE
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        class="ad-modal"
+        id="loginModal"
+    >
+
+        <div class="ad-box">
+
+
+            <button
+                class="close-ad"
+                id="closeLoginModal"
+                type="button"
+                aria-label="閉じる"
+            >
+                ×
+            </button>
+
+
+
+            <div class="ad-label">
+                ADMIN LOGIN
+            </div>
+
+
+
+            <h2>
+                ADMIN
+            </h2>
+
+
+
+            <p class="ad-text">
+                Rain Texture管理者専用ログイン
+            </p>
+
+
+
+            <form id="loginForm">
+
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        EMAIL
+                    </label>
+
+
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        placeholder="管理者メールアドレス"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        PASSWORD
+                    </label>
+
+
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        placeholder="パスワード"
+                        required
+                    >
+
+                </div>
+
+
+
+                <button
+                    class="submit-button"
+                    type="submit"
+                >
+                    LOGIN
+                </button>
+
+
+            </form>
+
+
+
+
+
+
+            <p
+                id="loginMessage"
+                class="ad-text"
+            ></p>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        class="ad-modal"
+        id="termsModal"
+    >
+
+        <div class="ad-box terms-box">
+
+
+            <button
+                class="close-ad"
+                id="closeTermsModal"
+                type="button"
+                aria-label="閉じる"
+            >
+                ×
+            </button>
+
+
+            <div class="ad-label">
+                TERMS OF SERVICE
+            </div>
+
+            <h2 class="terms-title">
+                利用規約
+            </h2>
+
+
+            <div class="terms-content">
+
+                <div class="terms-section">
+                    <h3>このサイトについて</h3>
+                    <p>Rain TextureはMinecraft向けのテクスチャ・リソースパックを共有するサイトです。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>利用について</h3>
+                    <p>掲載されているテクスチャは各テクスチャの配布条件に従って利用してください。再配布や改変版の配布については、各テクスチャの作者が定めた条件に従ってください。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>免責事項</h3>
+                    <p>当サイトで配布されているファイルの利用によって発生した問題について、サイト運営者は責任を負いません。Minecraft本体やその他サービスについては、それぞれの運営元の規約に従ってください。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>禁止事項</h3>
+                    <p>
+                        サイトへの不正アクセス<br>
+                        サイトやサーバーへの攻撃<br>
+                        他人への迷惑行為<br>
+                        違法なファイルのアップロード<br>
+                        その他、サイト運営を妨害する行為
+                    </p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>規約の変更</h3>
+                    <p>必要に応じて利用規約を変更する場合があります。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>お問い合わせ</h3>
+                    <p>問題や削除依頼などがある場合は、Discordのダイレクトメッセージ、またはメール（narogame78@gmail.com）にてサイト管理者までご連絡ください。</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        class="ad-modal"
+        id="privacyModal"
+    >
+
+        <div class="ad-box terms-box">
+
+
+            <button
+                class="close-ad"
+                id="closePrivacyModal"
+                type="button"
+                aria-label="閉じる"
+            >
+                ×
+            </button>
+
+
+            <div class="ad-label">
+                PRIVACY POLICY
+            </div>
+
+            <h2 class="terms-title">
+                プライバシーポリシー
+            </h2>
+
+
+            <div class="terms-content">
+
+                <div class="terms-section">
+                    <h3>個人情報の取得について</h3>
+                    <p>当サイトでは、お問い合わせの際にDiscordのユーザー名やメールアドレスなどの情報をご提供いただく場合がありますが、これらの情報はお問い合わせへの対応以外の目的では使用しません。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>広告配信について</h3>
+                    <p>当サイトでは、第三者配信の広告サービス（Google AdSenseなど）を利用する場合があります。これらの広告配信事業者は、ユーザーの興味関心に応じた広告を表示するためにCookieを使用することがあります。Cookieを無効にする設定や、パーソナライズ広告の詳細については、Googleの広告設定ページおよびAboutAds.infoをご確認ください。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>アクセス解析ツールについて</h3>
+                    <p>当サイトでは、サイトの利用状況を把握するためにアクセス解析ツールを使用する場合があります。これらのツールはCookieを使用してデータを収集しますが、個人を特定する情報は含まれません。収集されたデータは各ツールの提供事業者のプライバシーポリシーに基づいて管理されます。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>免責事項</h3>
+                    <p>当サイトのコンテンツ・情報について、可能な限り正確な情報を掲載するよう努めていますが、正確性や安全性を保証するものではありません。当サイトの利用によって生じたいかなる損害についても、サイト運営者は責任を負いません。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>著作権について</h3>
+                    <p>当サイトで配布されているテクスチャの著作権は、制作者に帰属します。無断転載・無断使用を固く禁じます。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>プライバシーポリシーの変更について</h3>
+                    <p>当サイトは、必要に応じて本ポリシーの内容を予告なく変更することがあります。変更後のプライバシーポリシーは、本ページに掲載した時点から効力を持つものとします。</p>
+                </div>
+
+                <div class="terms-section">
+                    <h3>お問い合わせ</h3>
+                    <p>本ポリシーに関するお問い合わせは、Discordのダイレクトメッセージ、またはメール（narogame78@gmail.com）までご連絡ください。</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+<section class="bottom-ad-section">
+
+    <div class="bottom-ad-label">
+        ADVERTISEMENT
+    </div>
+
+
+    <div class="bottom-ad">
+
+        <span>
+            Advertisement
+        </span>
+
+        <small>
+            広告スペース
+        </small>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="footer-logo">
+        RAIN<span>TEXTURE</span>
+    </div>
+
+
+    <p>
+        Minecraft Texture Collection
+    </p>
+
+
+    <div class="footer-links">
+
+        <button
+            class="terms-button"
+            id="termsButton"
+            type="button"
+        >
+            利用規約
+        </button>
+
+
+        <button
+            class="terms-button"
+            id="privacyButton"
+            type="button"
+        >
+            プライバシーポリシー
+        </button>
+
+    </div>
+
+
+    <p>
+        お問い合わせ：Discord DM ／ narogame78@gmail.com
+    </p>
+
+
+    <p class="copyright">
+        © 2026 Rain Texture
+    </p>
+
+</footer>
+
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+
+
+    <script
+        src="script.js"
+    ></script>
+
+
+</body>
+
+</html>
