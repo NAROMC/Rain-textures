@@ -196,15 +196,26 @@ function elementExists(element) {
 
 
 function escapeHTML(text) {
+    return String(text ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
 
-    const div =
-        document.createElement("div");
 
-    div.textContent =
-        String(text ?? "");
 
-    return div.innerHTML;
-
+function safeImageURL(url) {
+    if (!url) {
+        return "";
+    }
+    try {
+        const u = new URL(url, location.href);
+        return (u.protocol === "https:") ? u.href : "";
+    } catch {
+        return "";
+    }
 }
 
 
@@ -330,17 +341,6 @@ function updateAdminState() {
         !!currentUser &&
         currentUser.id ===
         ADMIN_USER_ID;
-
-
-    console.log(
-        "Current user:",
-        currentUser?.id ?? "none"
-    );
-
-    console.log(
-        "Admin:",
-        isAdmin
-    );
 
 
     if (
@@ -632,8 +632,7 @@ function renderTextures() {
 
 
             const imageURL =
-                texture.image_url ||
-                "";
+                safeImageURL(texture.image_url);
 
 
 
@@ -886,7 +885,7 @@ function openTextureDetails(
     ) {
 
         detailImage.src =
-            texture.image_url || "";
+            safeImageURL(texture.image_url);
 
         detailImage.alt =
             texture.name || "";
@@ -2314,12 +2313,6 @@ if (
                     );
 
                 }
-
-
-                console.log(
-                    "投稿成功:",
-                    insertedData
-                );
 
 
                 postForm.reset();
@@ -3841,6 +3834,8 @@ async function deleteTexture(
 
 
         const {
+            data:
+            deletedRows,
             error:
             deleteError
         } =
@@ -3850,7 +3845,8 @@ async function deleteTexture(
                 .eq(
                     "id",
                     texture.id
-                );
+                )
+                .select();
 
 
         if (deleteError) {
@@ -3858,6 +3854,18 @@ async function deleteTexture(
             throw new Error(
                 "Databaseから削除できませんでした: " +
                 deleteError.message
+            );
+
+        }
+
+
+        if (
+            !deletedRows ||
+            deletedRows.length === 0
+        ) {
+
+            throw new Error(
+                "削除できませんでした(権限がないか、すでに削除されています)"
             );
 
         }
