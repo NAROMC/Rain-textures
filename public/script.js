@@ -2704,39 +2704,7 @@ async function performDownload(
             );
 
 
-        const link =
-            document.createElement(
-                "a"
-            );
-
-
-        link.href =
-            signedURL;
-
-
-        link.download =
-            getDownloadFileName(
-                texture
-            );
-
-
-        link.target =
-            "_blank";
-
-
-        link.rel =
-            "noopener";
-
-
-        document.body.appendChild(
-            link
-        );
-
-
-        link.click();
-
-
-        link.remove();
+        window.location.assign(signedURL);
 
 
         if (
