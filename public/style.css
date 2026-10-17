@@ -1909,8 +1909,56 @@ html {
     background: #00d9ff;
 }
 
-/* Public download counts and admin-only analytics */
-.texture-download-count { display: block; margin-top: 8px; font-size: 0.75rem; letter-spacing: 0.08em; color: var(--muted, #8b8b8b); }
-.visitor-stats-panel { margin: 24px 0; padding: 20px; border: 1px solid var(--border, rgba(255,255,255,.15)); border-radius: 14px; }
-.visitor-stats-panel h3 { margin: 8px 0; }
-.visitor-stats-panel #visitorStatsValue { display: inline-block; margin: 8px 14px 8px 0; font-size: 1.6rem; }
+/* Quiet metadata styling for public download counts and the admin-only header counter. */
+.texture-download-count {
+    display: block;
+    margin-top: -5px;
+    margin-bottom: 12px;
+    color: #71808a;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0;
+}
+.texture-download-count span {
+    color: #64737d;
+    font-size: 11px;
+}
+.visitor-stats-panel {
+    align-items: center;
+    gap: 5px;
+    margin-left: 4px;
+    padding: 4px 6px;
+    border: 1px solid rgba(0, 217, 255, 0.12);
+    border-radius: 6px;
+    color: #7f909b;
+    background: rgba(0, 217, 255, 0.025);
+    white-space: nowrap;
+    line-height: 1;
+}
+.visitor-stats-label {
+    color: #647782;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+.visitor-stats-panel #visitorStatsValue {
+    color: #9baab3;
+    font-size: 10px;
+    font-weight: 600;
+}
+.visitor-stats-panel button {
+    border: 0;
+    background: transparent;
+    color: #647782;
+    padding: 1px 2px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.visitor-stats-panel button:hover { color: #00d9ff; }
+
+@media (max-width: 520px) {
+    .visitor-stats-panel { gap: 3px; margin-left: 1px; padding: 4px; }
+    .visitor-stats-label { font-size: 7px; }
+    .visitor-stats-panel #visitorStatsValue { font-size: 9px; }
+}

@@ -389,6 +389,15 @@ async function checkCurrentUser() {
 }
 
 
+function updateVisitorStatsVisibility() {
+    const visitorStatsPanel = document.getElementById("visitorStatsPanel");
+    if (!visitorStatsPanel) return;
+    // Show the compact admin-only counter only at the very top of the page.
+    visitorStatsPanel.style.display = isAdmin && window.scrollY <= 4 ? "inline-flex" : "none";
+}
+
+window.addEventListener("scroll", updateVisitorStatsVisibility, { passive: true });
+
 function updateAdminState() {
 
     isAdmin =
@@ -397,11 +406,8 @@ function updateAdminState() {
         ADMIN_USER_ID;
 
 
-    const visitorStatsPanel = document.getElementById("visitorStatsPanel");
-    if (visitorStatsPanel) {
-        visitorStatsPanel.style.display = isAdmin ? "block" : "none";
-        if (isAdmin) loadAdminVisitorStats();
-    }
+    updateVisitorStatsVisibility();
+    if (isAdmin) loadAdminVisitorStats();
 
     if (
         elementExists(postSection)
@@ -784,7 +790,7 @@ function renderTextures() {
                         VERSION ${escapeHTML(texture.version)}
                     </span>
                     <span class="texture-download-count" aria-label="ダウンロード数">
-                        DOWNLOADS ${Number(downloadCounts[String(texture.id)] || 0).toLocaleString("ja-JP")}
+                        <span aria-hidden="true">↓</span> ${Number(downloadCounts[String(texture.id)] || 0).toLocaleString("ja-JP")} ダウンロード
                     </span>
 
 

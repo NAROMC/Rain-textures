@@ -92,6 +92,12 @@
                 LOGOUT
             </button>
 
+            <div id="visitorStatsPanel" class="visitor-stats-panel" style="display:none;" aria-live="polite" title="管理者専用のサイト訪問数">
+                <span class="visitor-stats-label">VISITS</span>
+                <strong id="visitorStatsValue">...</strong>
+                <button type="button" id="refreshVisitorStats" aria-label="訪問数を更新" title="訪問数を更新" onclick="loadAdminVisitorStats()">↻</button>
+            </div>
+
         </nav>
 
     </header>
@@ -254,15 +260,6 @@
                 >
                     管理者確認中...
                 </div>
-
-                <div id="visitorStatsPanel" class="visitor-stats-panel" style="display:none;" aria-live="polite">
-                    <div class="section-label">SITE ANALYTICS</div>
-                    <h3>サイト訪問数</h3>
-                    <p class="post-description">同じブラウザは24時間以内の再訪問を重複カウントしません。</p>
-                    <strong id="visitorStatsValue">読み込み中...</strong>
-                    <button type="button" id="refreshVisitorStats" class="page-button" onclick="loadAdminVisitorStats()">更新</button>
-                </div>
-
 
 
 
