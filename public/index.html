@@ -38,6 +38,7 @@
         type="button"
         aria-label="Rain Texture ホーム"
     >
+        <img class="logo-avatar" src="favicon.png" alt="" aria-hidden="true">
         RAIN<span>TEXTURE</span>
     </button>
 
@@ -105,40 +106,6 @@
 
 
 
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <div class="hero-small">
-                MINECRAFT TEXTURE COLLECTION
-            </div>
-
-
-            <h1>
-                Rain自作テクスチャ
-            </h1>
-
-
-            <p class="hero-description">
-                Minecraftをテクスチャパックで気軽に"新しい"を実現させる。
-            </p>
-
-
-            <button
-                class="hero-button"
-                id="exploreButton"
-                type="button"
-            >
-                EXPLORE TEXTURES
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-
     <main>
 
         <section
@@ -147,27 +114,13 @@
         >
 
             <div class="section-header">
-
-                <div>
-
-                    <div class="section-label">
-                        COLLECTION
-                    </div>
-
-                    <h2>
-                        Textures
-                    </h2>
-
-                </div>
-
-
-
                 <div class="search-box">
 
                     <input
                         id="searchInput"
                         type="text"
-                        placeholder="テクスチャを検索..."
+                        aria-label="テクスチャを検索"
+                        placeholder=""
                         autocomplete="off"
                     >
 
@@ -177,7 +130,10 @@
                         type="button"
                         aria-label="検索"
                     >
-                        🔍
+                        <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none">
+                            <circle cx="10.8" cy="10.8" r="6.6" stroke="currentColor" stroke-width="1.8" />
+                            <path d="m16 16 4.1 4.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" />
+                        </svg>
                     </button>
 
                 </div>

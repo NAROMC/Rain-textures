@@ -787,7 +787,7 @@ function renderTextures() {
 
 
                     <span class="texture-version">
-                        VERSION ${escapeHTML(texture.version)}
+                        Ver. ${escapeHTML(texture.version)}
                     </span>
                     <span class="texture-download-count" aria-label="ダウンロード数">
                         <span aria-hidden="true">↓</span> ${Number(downloadCounts[String(texture.id)] || 0).toLocaleString("ja-JP")} ダウンロード
@@ -798,7 +798,7 @@ function renderTextures() {
                         class="download-button"
                         type="button"
                     >
-                        DOWNLOAD
+                        ダウンロード
                     </button>
 
 
